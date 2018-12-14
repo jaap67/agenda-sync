@@ -176,6 +176,10 @@ public class AlunoDAO extends SQLiteOpenHelper {
     public void sincroniza(List<Aluno> alunos) {
         for (Aluno aluno :
                 alunos) {
+
+            aluno.sincroniza();
+
+
             if (existe(aluno)) {
                 if (aluno.estaDesativado()){
                     deleta(aluno);
@@ -194,5 +198,12 @@ public class AlunoDAO extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(existe, new String[]{aluno.getId()});
         int quantidade = cursor.getCount();
         return quantidade > 0;
+    }
+
+    public List<Aluno> listaNaoSincronizado(){
+        SQLiteDatabase db = getReadableDatabase();
+        String sql = "SELECT * FROM Alunos WHERE sincronizado = 0";
+        Cursor cursor = db.rawQuery(sql, null);
+        return populaAlunos(cursor);
     }
 }
