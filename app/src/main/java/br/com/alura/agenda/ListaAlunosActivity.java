@@ -55,7 +55,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                sincronizador.buscaAlunos();
+                sincronizador.buscaTodos();
             }
         });
 
@@ -80,7 +80,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         });
 
         registerForContextMenu(listaAlunos);
-        sincronizador.buscaAlunos();
+        sincronizador.buscaTodos();
     }
 
     private void carregaLista() {
@@ -115,11 +115,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         eventBus.unregister(this);
-    }
-
-    private void buscaAlunos() {
-
-        sincronizador.buscaAlunos();
     }
 
     @Override
