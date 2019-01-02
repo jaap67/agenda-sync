@@ -131,7 +131,7 @@ public class AlunoSincronizador {
             public void onFailure(Call<AlunoSync> call, Throwable t) {
 
             }
-        });
+        }); 
     }
 
     public void deleta(final Aluno aluno) {
